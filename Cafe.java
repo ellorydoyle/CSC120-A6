@@ -1,10 +1,23 @@
-/* This is a stub for the Cafe class */
+/** 
+ *  Class representing a Cafe
+ *  The Cafe class is built upon the Building class
+ */
 public class Cafe extends Building{
+    /** How many ounces of coffee does the cafe currently have? */
     private int nCoffeeOunces;
+    /** How many packets of sugar does the cafe currently have? */
     private int nSugarPackets;
+    /** How many packets of cream does the cafe currently have? */
     private int nCreams;
+    /** How many cups does the cafe currently have? */
     private int nCups;
 
+    /** 
+     *  Create a Cafe with specified name, address, and floors
+     *  @param name The name of the building
+     *  @param address Where the building is located
+     *  @param nFloors How many floors the building has
+     */
     public Cafe(String name, String address, int nFloors) {
         super(name, address, nFloors);
         this.nCoffeeOunces = 100;
@@ -14,6 +27,12 @@ public class Cafe extends Building{
         System.out.println("You have built a cafe: ☕");
     }
     
+    /** 
+     *  Sell a coffee and decrease the stock
+     *  @param size The number of oz in the coffee
+     *  @param nSugarPackets The number of sugar packets in the coffee
+     *  @param nCreams The number of creams in the coffee
+     */
     public void sellCoffee(int size, int nSugarPackets, int nCreams){
         if (size > this.nCoffeeOunces){
             System.out.println(this.name + " is low on at least one item. Let the restocking commence!");
@@ -50,17 +69,17 @@ public class Cafe extends Building{
         }
     }
 
+    /** 
+     *  Restock all of the cafe materials
+     *  @param nCoffeeOunces The number of oz in the store
+     *  @param nSugarPackets The number of sugar packets in the store
+     *  @param nCreams The number of creams in the store
+     *  @param nCups The number of cups in the store
+     */
     private void restock(int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups){
         this.nCoffeeOunces = 100;
         this.nSugarPackets = 50;
         this.nCreams = 50;
         this.nCups = 200;
     }
-    public static void main(String[] args) {
-        Cafe madwimmin = new Cafe("Madwimmin Cafe", "Minneapolis, MN", 1);
-        System.out.println(madwimmin);
-        madwimmin.sellCoffee(95, 20, 5);
-        madwimmin.sellCoffee(30, 1, 50);
-    }
-    
 }

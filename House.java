@@ -1,10 +1,22 @@
 import java.util.ArrayList;
-/* This is a stub for the House class */
+/** 
+ *  Class representing a House
+ *  The House class is built upon the Building class
+ */
 public class House extends Building {
 
+  /**  Who lives in the house? */
   private ArrayList<String> residents;
+  /**  Does the house have a dining room? */
   private boolean hasDiningRoom;
 
+  /** 
+   *  Create a house with specified name, address, floors, and whether or not it has a dining room
+   *  @param name The name of the building
+   *  @param address Where the building is located
+   *  @param nFloors How many floors the building has
+   *  @param hasDiningRoom If the house has a dining room or not
+   */
   public House(String name, String address, int nFloors, boolean hasDiningRoom) {
     super(name, address, nFloors);
     this.residents = new ArrayList<String>();
@@ -12,14 +24,26 @@ public class House extends Building {
     System.out.println("You have built a house: 🏠");
   }
 
+  /** 
+   *  Check if the house has a dining room 
+   *  @return true or false on whether the house has a dining room
+   */
   public boolean hasDiningRoom() {
     return this.hasDiningRoom;
   }
 
+  /** 
+   *  Check how many residents are in the house 
+   *  @return the number of residents in the house
+   */
   public int nResidents(){
     return this.residents.size();
   }
 
+  /** 
+   *  Add a student onto the list of residents 
+   *  @param name The name of the student
+   */
   public void moveIn(String name){
     if (this.residents.contains(name)){
       throw new RuntimeException(name + " is already a resident of " + this.name + ".");
@@ -28,6 +52,11 @@ public class House extends Building {
     System.out.println(name + " has just moved into " + this.name + "! Go say hello :-)");
   }
 
+  /** 
+   *  Remove a student from the list of residents
+   *  @param name The name of the student
+   *  @return The name of the student
+   */
   public String moveOut(String name){
     if (!this.residents.contains(name)){
       throw new RuntimeException(name + " is not a resident of " + this.name + ".");
@@ -37,6 +66,11 @@ public class House extends Building {
     return name;
   }
 
+  /** 
+   *  Check if a student is a resident of the house
+   *  @param person The name of the student
+   *  @return A boolean on whether the student is a resident
+   */
   public boolean isResident(String person){
     if (!this.residents.contains(person)){
       System.out.println(person  + " is not a resident of " + this.name + ".");
@@ -50,6 +84,11 @@ public class House extends Building {
       throw new RuntimeException("Something went wrong. Please check inputs.");
     }
   }
+
+  /** 
+   *  Converts all of the house information into a readable string
+   *  @return The description of the house
+   */
   public String toString() {
     String description = super.toString();
     if (this.nResidents() == 1){
@@ -67,16 +106,4 @@ public class House extends Building {
     description += " an active dining room.";
     return description;
   }
-
-  public static void main(String[] args) {
-    House morrow = new House("Morrow", "The Quad", 4, false);
-    System.out.println(morrow);
-    morrow.moveIn("Jordan");
-    System.out.println(morrow);
-    House king = new House("King", "The Quad", 3, true);
-    System.out.println(king);
-    morrow.isResident("Jordan");
-    king.isResident("Jordan");
-  }
-
 }

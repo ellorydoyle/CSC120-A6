@@ -1,15 +1,29 @@
 import java.util.Hashtable;
-/* This is a stub for the Library class */
+/** 
+ *  Class representing a Library
+ *  The Library class is built upon the Building class
+ */
 public class Library extends Building {
 
+  /** What are all of the books in the library? */
   private Hashtable <String, Boolean> collection;
 
+    /** 
+     *  Create a library with specified name, address, and floors
+     *  @param name The name of the building
+     *  @param address Where the building is located
+     *  @param nFloors How many floors the building has
+     */  
     public Library(String name, String address, int nFloors) {
       super(name, address, nFloors);
       this.collection = new Hashtable<String, Boolean>();
       System.out.println("You have built a library: 📖");
     }
 
+    /** 
+     *  Add a book to the hastable of books
+     *  @param title The title of the book
+     */  
     public void addTitle (String title){
       if (this.collection.containsKey(title)){
         throw new RuntimeException(title + " is already a part of " + this.name + "'s catalogue.");
@@ -17,7 +31,12 @@ public class Library extends Building {
       this.collection.put(title,true);
       System.out.println(title + " has been added to " + this.name + "'s catalogue. Give it a read!");
     }
-  
+
+    /** 
+     *  Remove a book from the hastable of books
+     *  @param title The title of the book
+     *  @return The title of the book
+     */ 
     public String removeTitle (String title){
       if (!this.collection.containsKey(title)){
         throw new RuntimeException (title + " is not a part of " + this.name + "'s cataloge.");
@@ -27,13 +46,20 @@ public class Library extends Building {
       return title;
     }
 
+    /** 
+     *  Change the availability of a book to unavailable
+     *  @param title The title of the book
+     */ 
     public void checkOut (String title){
       if (!this.collection.containsKey(title)){
         throw new RuntimeException (title + " is not a part of " + this.name + "'s cataloge.");
       }
       this.collection.replace(title, false);
     }
-
+    /** 
+     *  Change the availability of a book to available
+     *  @param title The title of the book
+     */ 
     public void returnBook (String title){
       if (!this.collection.containsKey(title)){
         throw new RuntimeException (title + " is not a part of " + this.name + "'s cataloge.");
@@ -41,6 +67,11 @@ public class Library extends Building {
       this.collection.replace(title, true);
     }
 
+    /** 
+     *  Check if the library carries a certain book
+     *  @param title The title of the book
+     *  @return A boolean on whether or not the library carries the book
+     */ 
     public boolean containsTitle (String title){
       if (this.collection.containsKey(title)){
         System.out.println(title + " is a part of " + this.name + "'s cataloge.");
@@ -52,6 +83,11 @@ public class Library extends Building {
       }
     }
 
+    /** 
+     *  Add a book to the list of hastable of books
+     *  @param title The title of the book
+     *  @return A boolean on whether or not the book is available
+     */ 
     public boolean isAvailable (String title){
       if (!this.collection.containsKey(title)){
         throw new RuntimeException (title + " is not a part of " + this.name + "'s cataloge.");
@@ -66,6 +102,9 @@ public class Library extends Building {
       }
     }
 
+    /** 
+     *  Print the collection of books at the library
+     */ 
     public void printCollection(){
       /////
       this.collection.entrySet().forEach( entry -> {
@@ -79,23 +118,12 @@ public class Library extends Building {
       });
     }
 
+    /** 
+     *  Converts all of the library information into a readable string
+     *  @return the description of the library
+     */ 
     public String toString() {
       String description = super.toString();
       return description;
-    }
-    public static void main(String[] args) {
-      Library williamMcKinley = new Library("William McKinley Public Library", "Lima, OH", 3);
-      System.out.println(williamMcKinley);
-      williamMcKinley.addTitle("Super Bass");
-      williamMcKinley.printCollection();
-      williamMcKinley.containsTitle("Super Bass");
-      williamMcKinley.containsTitle("Not So Super Bass");
-      williamMcKinley.addTitle("Shark Attack");
-      williamMcKinley.containsTitle("Shark Attack");
-      williamMcKinley.checkOut("Shark Attack");
-      williamMcKinley.isAvailable("Shark Attack");
-      williamMcKinley.isAvailable("Super Bass");
-      williamMcKinley.printCollection();
-      williamMcKinley.removeTitle("Super Bass");
     }
   }
